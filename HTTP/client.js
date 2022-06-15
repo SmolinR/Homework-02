@@ -4,11 +4,19 @@ const PORT = 3000;
 
 const server = http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.write('Hello world!\r\n');
-  res.end();
-  req.on('end', () => {
-    console.log('Client disconnected');
-  });
+  if (req.method === 'GET') {
+    res.write('Get method!\r\n');
+    res.end();
+    req.on('end', () => {
+      console.log('Get disconnected');
+    });
+  } else if (req.method === 'PUT') {
+    res.write('Put method!\r\n');
+    res.end();
+    req.on('end', () => {
+      console.log('Put disconnected');
+    });
+  }
 });
 server.on('connection', () => {
   console.log('Client connected');
