@@ -45,3 +45,25 @@ PUT.on('error', (error) => {
   console.error(error);
 });
 PUT.end();
+const optionsPatch = {
+  hostname: 'localhost',
+  port: 3000,
+  path: '/',
+  method: 'PATCH',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+};
+
+const PATCH = http.request(optionsPatch, (res) => {
+  console.log(`statusCode: ${res.statusCode}`);
+
+  res.on('data', (data) => {
+    console.log(data.toString());
+  });
+});
+
+PATCH.on('error', (error) => {
+  console.error(error);
+});
+PATCH.end();

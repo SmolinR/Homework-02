@@ -16,6 +16,12 @@ const server = http.createServer((req, res) => {
     req.on('end', () => {
       console.log('Put disconnected');
     });
+  } else if (req.method === 'PATCH') {
+    res.write('Patch method!\r\n');
+    res.end();
+    req.on('end', () => {
+      console.log('Patch disconnected');
+    });
   }
 });
 server.on('connection', () => {
